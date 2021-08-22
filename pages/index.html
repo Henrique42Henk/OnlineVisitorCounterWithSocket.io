@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src=/socket.io/socket.io.js></script>
+    <script>
+    var socket = io('http://localhost:3000');
+    socket.on('visits', function(visitas){
+      document.getElementById('visitasOn').innerHTML = visitas;
+    });
+    </script>
+</head>
+<body>
+    <p>Contador de visitas online com Socket.io</p>
+    <p>Número de visitantes online: <span id="visitasOn">0</span></p>
+</body>
+<script>
+    function myLoop() {         
+        setTimeout(function() {   
+
+
+            //code/
+          
+            socket.on('visits', function(visitas){
+                document.getElementById('visitasOn').innerHTML = visitas;
+            });    
+            
+            
+            //code\
+
+            
+                
+            myLoop()             
+                                
+        }, (1000))
+        }
+    myLoop(); 
+</script>
+</html>
